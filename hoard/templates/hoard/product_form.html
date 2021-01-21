@@ -1,5 +1,12 @@
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" name="button">Submit</button>
-</form>
+{% extends "hoard/main.html"%}
+{% block content %}
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" name="button">Submit</button>
+    </form>
+  </div>
+</section>
+{%endblock%}

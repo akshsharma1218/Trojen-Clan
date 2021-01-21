@@ -121,3 +121,4 @@ EMAIL_HOST_PASSWORD = "seiaobihmohcatru"
 
 
 LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
