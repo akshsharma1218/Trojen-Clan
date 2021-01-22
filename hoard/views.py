@@ -12,7 +12,7 @@ from django.views.generic import (
 
 def index(request):
     products = Product.objects.all()
-    context =  {'products':products,'active': 'active', 'header':'header-transparent'}
+    context =  {'products':products,'active': 'active','top':'-top', 'header':'header-transparent'}
     return render(request, 'hoard/index.html', context)
 
 def register(request):

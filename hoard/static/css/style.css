@@ -1,14 +1,12 @@
-/**
-* Template Name: Selecao - v2.3.0
-* Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 .product-image{
   margin: 10px 5px;
   padding: 10px 5px;
 }
-
+ .form {
+   border: 2px solid grey;
+   border-radius: 5px;
+   padding: 20px;
+ }
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
