@@ -11,9 +11,14 @@ from django.views.generic import (
 )
 
 def index(request):
-    products = Product.objects.all()
+    products = Product.objects.order_by('-id')[:4]
     context =  {'products':products,'active': 'active','top':'-top', 'header':'header-transparent'}
     return render(request, 'hoard/index.html', context)
+
+def store(request):
+    products = Product.objects.all()
+    context =  {'products':products}
+    return render(request, 'hoard/store.html', context)
 
 def register(request):
     if request.method == 'POST':

@@ -10,6 +10,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Favicons -->
   <link href="{% static '/image/favicon.png' %}" rel="icon">
   <link href="{% static '/image/apple-touch-icon.png' %}" rel="apple-touch-icon">
@@ -48,22 +49,23 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="{{active}}"><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="#pricing">Recent</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
             {% if not user.is_authenticated %}
+            <li><a href="#pricing">Recent</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li><a href="#team">Team</a></li>
+            <li><a href="#about">About</a></li>
           <li><a href="{% url 'login' %}">Login</a></li>
           <li><a href="{% url 'register' %}">Register</a></li>
           {% else %}
+          <li><a href="{% url 'store' %}">Store</a></li>
           <li><a href="{% url 'product-create' %}">Sell</a></li>
           <li class="drop-down"><a href="">Buy</a>
             <ul>
               <li><a href="#">Notes</a></li>
               <li class="drop-down"><a href="#">Book</a>
                 <ul>
-                  <li><a href="#">Buy</a></li>
-                  <li><a href="#">Rent</a></li>
+                  <li><a href="{% url 'store' %}">Buy</a></li>
+                  <li><a href="{% url 'store' %}">Rent</a></li>
                 </ul>
               </li>
               <li><a href="#">Assignments</a></li>
@@ -71,7 +73,6 @@
           </li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
           {% endif %}
-
         </ul>
       </nav><!-- .nav-menu -->
 

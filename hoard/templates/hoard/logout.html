@@ -1,11 +1,14 @@
 {% extends "hoard/main.html"%}
 {% block content %}
-<section id="breadcrumbs" class="breadcrumbs">
+<section class="form">
   <h2>You have been logged out</h2>
   <div class="border-top pt-3">
-      <small class="text-muted">
-          <a href="{% url 'login' %}">Log In Again</a>
-      </small>
+      <a class="btn btn-info" href="{% url 'login' %}">Log In Again</a>   
   </div>
 </section>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#footer").css("marginTop","15%");
+});
+</script>
 {% endblock %}

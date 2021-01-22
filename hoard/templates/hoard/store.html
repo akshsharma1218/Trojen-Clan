@@ -1,0 +1,25 @@
+{% extends 'hoard/main.html'%}
+{% block content %}
+<section class="pricing">
+  <div class="container">
+    <div class="section-title" data-aos="zoom-out">
+      <h2>Books</h2>
+      <p>Book Store</p>
+    </div>
+    <div class="row">
+      {% for book in products %}
+      <div class="col-lg-3 col-md-6 mt-4">
+        <div class="box featured" data-aos="zoom-in">
+          <h3>{{book.title}}</h3>
+          <h4><sup>Rs.</sup>{{book.price}}<span> / month</span></h4>
+          <img class="product-image" src="{{ book.image.url }}" height="170px" alt="">
+          <div class="btn-wrap">
+            <a href="{% url 'product-detail' book.id %}" class="btn-buy">View</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+  {% endblock %}

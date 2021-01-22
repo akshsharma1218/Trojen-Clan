@@ -2,10 +2,16 @@
   margin: 10px 5px;
   padding: 10px 5px;
 }
+.mp{
+  margin: 10px 20px;
+  padding: 10px 15px;
+}
  .form {
-   border: 2px solid grey;
+   border: 2px solid #c9d0d2;
    border-radius: 5px;
+   box-shadow: 3px 2px 1px #b1c3c8;
    padding: 20px;
+   margin: 20px 35px;
  }
 /*--------------------------------------------------------------
 # General
@@ -1410,6 +1416,7 @@ section {
   margin-top: 70px;
   background: #f7f8f9;
   min-height: 40px;
+  border: 1px solid grey;
 }
 
 .breadcrumbs h2 {
