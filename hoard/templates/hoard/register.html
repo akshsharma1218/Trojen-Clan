@@ -12,6 +12,9 @@
       {{form.username}}
     </div>
     <div class="col-md-6 form-group">
+      {{form.roll}}
+    </div>
+    <div class="col-md-6 form-group">
       {{form.email}}
     </div>
     <div class="col-md-6 form-group">
@@ -29,9 +32,9 @@
 </section>
 <script type="text/javascript">
   const form_field = document.getElementsByTagName('input')
-  form_field[1].placeholder = 'Username'
+  form_field[1].placeholder = 'Roll No'
   form_field[2].placeholder = 'E-mail'
   form_field[3].placeholder = 'Password'
-  form_field[3].placeholder = 'Confirm-Pass'
+  form_field[4].placeholder = 'Confirm-Pass'
 </script>
 {% endblock %}
