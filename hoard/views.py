@@ -20,6 +20,9 @@ def store(request):
     context =  {'products':products}
     return render(request, 'hoard/store.html', context)
 
+def cart(request):
+    return render(request, 'hoard/cart.html')
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
