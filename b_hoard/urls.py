@@ -8,6 +8,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('hoard.urls')),
+    path('cart/', views.cart, name = 'cart'),
     path('login/', auth_views.LoginView.as_view(template_name='hoard/login.html'),name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='hoard/logout.html'),name='logout'),
     path('password-reset/',
