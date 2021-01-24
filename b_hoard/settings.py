@@ -120,5 +120,5 @@ EMAIL_HOST_USER = "cnt2k20@gmail.com"
 EMAIL_HOST_PASSWORD = "seiaobihmohcatru"
 
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'store'
 LOGIN_URL = 'login'

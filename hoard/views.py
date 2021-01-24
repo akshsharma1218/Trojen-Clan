@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm
-from .models import Product
+from .models import *
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     UpdateView,
@@ -40,24 +40,26 @@ class ProductDetailView(DetailView):
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
-    fields = ['title', 'type', 'price', 'image']
+    fields = ['title','type', 'price','description', 'image']
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        print(self.request.POST)
+        owner , created = Owner.objects.get_or_create(user=self.request.user)
+        form.instance.owner = self.request.user.owner
         return super().form_valid(form)
 
 
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Product
-    fields = ['type', 'price']
+    fields = ['title','type', 'price','description', 'image']
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.owner = self.request.user.owner
         return super().form_valid(form)
 
     def test_func(self):
         product = self.get_object()
-        if self.request.user == product.user:
+        if self.request.user.owner == product.owner:
             return True
         return False
 
@@ -68,6 +70,6 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         product = self.get_object()
-        if self.request.user == product.user:
+        if self.request.user.owner == product.owner:
             return True
         return False

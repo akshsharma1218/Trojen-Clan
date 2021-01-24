@@ -13,6 +13,7 @@
    padding: 20px;
    margin: 20px 35px;
  }
+
 /*------------------cart --------------*/
  
  .content{
@@ -154,6 +155,20 @@
 	}
 }
 /*------cart ends------*/
+
+input{
+  line-height: 2;
+}
+
+ #id_description{
+   border-radius: 5px;
+   border: 1px solid lightgrey;
+   line-height: 1;
+   padding: 10px;
+   color: grey;
+   opacity: 1;
+ }
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
