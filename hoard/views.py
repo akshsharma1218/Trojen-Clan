@@ -5,6 +5,7 @@ from .models import *
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import (
     UpdateView,
     DeleteView,
@@ -14,19 +15,24 @@ from django.views.generic import (
 
 def index(request):
     products = Product.objects.order_by('-id')[:4]
-    context =  {'products':products,'active': 'active','top':'-top', 'header':'header-transparent'}
+    context =  {'products':products,'top':'-top', 'header':'header-transparent'}
     return render(request, 'hoard/index.html', context)
 
 def store(request):
     products = Product.objects.all()
-    context =  {'products':products}
+    customer, created = Customer.objects.get_or_create(user = request.user)
+    try:
+        order = Order.objects.get(customer=customer)
+    except ObjectDoesNotExist:
+        order = None
+    context =  {'products':products, 'cartItems': order.cart_items()}
     return render(request, 'hoard/store.html', context)
 
 def cart(request):
     if  request.user.is_authenticated:
         customer, created = Customer.objects.get_or_create(user = request.user)
         order, created = Order.objects.get_or_create(customer=customer)
-        context = {'order': order, 'cartItems': order.cart_items(), 'total':order.get_total()}
+        context = {'order': order,'total':order.get_total(), 'cartItems': order.cart_items()}
     return render(request, 'hoard/cart.html',context)
 
 def register(request):
@@ -95,13 +101,15 @@ def updateItem(request):
     if action=='add':
         order.products.add(product)
     elif action=='remove':
-        order.products.add(product)
+        order.products.remove(product)
     order.save()
 
     if not order.products:
         order.delete()
 
-    context={'cartItems': order.cart_items()}
+    context={'cartItems': order.cart_items(),'product':product}
     if request.is_ajax:
+        cart_html= render_to_string('hoard/cart_product.html', context , request=request)
         html= render_to_string('hoard/cart_var.html', context , request=request)
-        return JsonResponse({ 'form': html })
+        context = { 'form': html, 'cart':cart_html }
+        return JsonResponse(context)

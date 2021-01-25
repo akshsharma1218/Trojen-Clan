@@ -2,6 +2,9 @@
   margin: 10px 5px;
   padding: 10px 5px;
 }
+.cart-margin{
+  margin: 20px 0px 0px 300px;
+}
 .mp{
   margin: 10px 20px;
   padding: 10px 15px;
@@ -13,7 +16,7 @@
    padding: 20px;
    margin: 20px 35px;
  }
- 
+
  #cart-icon{
  	width:25px;
  	display: inline-block;
@@ -26,17 +29,12 @@
  	color:#fff;
  	background-color: red;
  	width: 20px;
- 	height: 25px;
+ 	height: 23px;
  	border-radius: 50%;
- 	font-size: 14px;
+ 	font-size: 12px;
  }
 /*------------------cart --------------*/
 
- .content{
-  border: 1px solid;
-  padding: 10px;
-  box-shadow: 10px 10px 8px #4b4949;
- }
  .shopping-cart{
 	padding-bottom: 50px;
 	font-family: 'Open Sans', sans-serif;

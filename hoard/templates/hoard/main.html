@@ -66,7 +66,7 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="{{active}}"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'home' %}">Home</a></li>
             {% if not user.is_authenticated %}
             <li><a href="#pricing">Recent</a></li>
             <li><a href="#about">About</a></li>
@@ -92,15 +92,17 @@
           <li><a href="{% url 'logout' %}">Logout</a></li>
           {% endif %}
         </ul>
-        <div class="form-inline my-2 my-lg-0">
-          <a href="{% url 'cart' %}">
-            <img id="cart-icon" src="{% static 'image/cart.png' %}" alt="">
-          </a>
-          {% include "hoard/cart_var.html" %}
-          </div>
-        </div>
       </nav><!-- .nav-menu -->
-
+      {% if not top %}
+      {% if user.is_authenticated %}
+      <div class="cart-margin">
+        <a href="{% url 'cart' %}">
+          <img id="cart-icon" src="{% static 'image/cart.png' %}" alt="">
+          {% include "hoard/cart_var.html" %}
+        </a>
+      </div>
+      {% endif %}
+      {% endif %}
     </div>
   </header><!-- End Header -->
 
@@ -152,7 +154,7 @@
     dataType : 'json',
     success : function(res){
       $('#cart-total').html(res['form'])
-      console.log($('#cart-total').html(res['form']))
+      $('#cart-product').html(res['cart'])
     },
     error : function(rs, e){
       console.log(e);
