@@ -31,7 +31,25 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static '/css/style.css' %}" rel="stylesheet">
-
+  <script type="text/javascript">
+  var user = '{{request.user}}'
+  function getToken(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+  var csrftoken = getToken('csrftoken');
+  </script>
 </head>
 
 <body>
@@ -74,6 +92,13 @@
           <li><a href="{% url 'logout' %}">Logout</a></li>
           {% endif %}
         </ul>
+        <div class="form-inline my-2 my-lg-0">
+          <a href="{% url 'cart' %}">
+            <img id="cart-icon" src="{% static 'image/cart.png' %}" alt="">
+          </a>
+          {% include "hoard/cart_var.html" %}
+          </div>
+        </div>
       </nav><!-- .nav-menu -->
 
     </div>
@@ -112,6 +137,30 @@
 
 <!-- Template Main JS File -->
 <script src="{% static '/js/main.js' %}"></script>
+<script type="text/javascript">
+  var updatebtns = document.getElementsByClassName('update-cart')
+
+  for(var i = 0; i < updatebtns.length; i++){
+    updatebtns[i].addEventListener('click', function(){
+      const productID = this.dataset.product
+      const action = this.dataset.action
+      console.log(productID,action);
+  $.ajax({
+    type:'POST',
+    url : '/update_item/',
+    data : {'productID': productID,'action':action,'csrfmiddlewaretoken': csrftoken},
+    dataType : 'json',
+    success : function(res){
+      $('#cart-total').html(res['form'])
+      console.log($('#cart-total').html(res['form']))
+    },
+    error : function(rs, e){
+      console.log(e);
+      },
+    });
+  });
+};
+</script>
 
 </body>
 

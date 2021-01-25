@@ -13,9 +13,25 @@
    padding: 20px;
    margin: 20px 35px;
  }
-
-/*------------------cart --------------*/
  
+ #cart-icon{
+ 	width:25px;
+ 	display: inline-block;
+ 	margin-left: 15px;
+ }
+
+ #cart-total{
+ 	display: block;
+ 	text-align: center;
+ 	color:#fff;
+ 	background-color: red;
+ 	width: 20px;
+ 	height: 25px;
+ 	border-radius: 50%;
+ 	font-size: 14px;
+ }
+/*------------------cart --------------*/
+
  .content{
   border: 1px solid;
   padding: 10px;
@@ -72,7 +88,7 @@
 .shopping-cart .items .product .info{
 	padding-top: 0px;
   text-align: center;
-  
+
 }
 
 .shopping-cart .items .product .info .product-name{
@@ -100,7 +116,7 @@
  }
 
 .shopping-cart .summary{
-	
+
     background-color: #ecf4fc;
     height: 100%;
     padding: 30px;
@@ -137,21 +153,21 @@
 @media (min-width: 768px) {
 	.shopping-cart .items .product .info {
 		padding-top: 25px;
-		text-align: left; 
+		text-align: left;
 	}
 
 	.shopping-cart .items .product .info .price {
 		font-weight: bold;
 		font-size: 22px;
-		top: 17px; 
+		top: 17px;
 	}
 
 	.shopping-cart .items .product .info .quantity {
-		text-align: center; 
+		text-align: center;
 	}
 	.shopping-cart .items .product .info .quantity .quantity-input {
 		padding: 4px 10px;
-		text-align: center; 
+		text-align: center;
 	}
 }
 /*------cart ends------*/

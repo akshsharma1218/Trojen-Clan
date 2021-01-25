@@ -2,7 +2,7 @@
 {% block content %}
 <section id="portfolio-details" class="portfolio-details">
 <div class="container form">
-<form method="POST"">
+<form enctype="multipart/form-data" method="POST"">
   {% csrf_token %}
   <div class="container">
     <h1>Add Book</h1>

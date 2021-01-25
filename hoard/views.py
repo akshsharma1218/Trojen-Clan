@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm
 from .models import *
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     UpdateView,
@@ -21,7 +23,11 @@ def store(request):
     return render(request, 'hoard/store.html', context)
 
 def cart(request):
-    return render(request, 'hoard/cart.html')
+    if  request.user.is_authenticated:
+        customer, created = Customer.objects.get_or_create(user = request.user)
+        order, created = Order.objects.get_or_create(customer=customer)
+        context = {'order': order, 'cartItems': order.cart_items(), 'total':order.get_total()}
+    return render(request, 'hoard/cart.html',context)
 
 def register(request):
     if request.method == 'POST':
@@ -76,3 +82,26 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user.owner == product.owner:
             return True
         return False
+
+def updateItem(request):
+    productID = request.POST.get('productID')
+    action = request.POST.get('action')
+    customer = request.user.customer
+    print(action)
+    print(productID)
+    product = Product.objects.get(id=productID)
+    order, created = Order.objects.get_or_create(customer=customer, complete = False)
+
+    if action=='add':
+        order.products.add(product)
+    elif action=='remove':
+        order.products.add(product)
+    order.save()
+
+    if not order.products:
+        order.delete()
+
+    context={'cartItems': order.cart_items()}
+    if request.is_ajax:
+        html= render_to_string('hoard/cart_var.html', context , request=request)
+        return JsonResponse({ 'form': html })

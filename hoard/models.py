@@ -21,7 +21,7 @@ class Product(models.Model):
     type        = models.CharField(max_length = 12, choices = TYPE, default = 'Sell')
     price       = models.IntegerField()
     description = models.TextField(default="No Description Given")
-    image       = models.ImageField(default='default.jpeg', upload_to='product')
+    image       = models.ImageField(default='default.jpeg', upload_to='media/product')
 
     def __str__(self):
         return self.title
@@ -38,12 +38,16 @@ class Customer(models.Model):
 
 class Order(models.Model):
     customer        = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    owner           = models.ForeignKey(Owner, on_delete=models.CASCADE)
     date_ordered    = models.DateTimeField(default=timezone.now)
     complete        = models.BooleanField(default=False)
     transaction_id  = models.CharField(max_length=100, unique=True)
     products        = models.ManyToManyField(Product)
 
     def __str__(self):
-        id = self.id + self.owner + self.customer
-        return id
+        return self.customer.user.username
+
+    def cart_items(self):
+        return self.products.count
+
+    def get_total(self):
+        return sum([product.price for product in self.products.all()])

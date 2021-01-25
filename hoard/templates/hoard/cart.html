@@ -1,0 +1,59 @@
+{% extends "hoard/main.html"%}
+{% block content %}
+	<main class="page">
+	 	<section class="shopping-cart dark">
+	 		<div class="container">
+		        <div class="block-heading">
+		          <h2>Shopping Cart</h2>
+		          <p>Here is your shopping cart</p>
+		        </div>
+		        <div class="content">
+	 				<div class="row">
+	 					<div class="col-md-12 col-lg-8">
+	 						<div class="items">
+								{% for product in order.products.all %}
+				 				<div class="product">
+				 					<div class="row">
+					 					<div class="col-md-3">
+					 						<img class="img-fluid mx-auto d-block image" src="{{product.image.url}}">
+					 					</div>
+					 					<div class="col-md-8">
+					 						<div class="info">
+						 						<div class="row">
+							 						<div class="col-md-5 product-name">
+							 							<div class="product-name">
+								 							<a href="#">Book 1</a>
+								 							<div class="product-info">
+									 							<div>Author <span class="value">XYZ</span></div>
+									 							<div>Edition <span class="value">2012</span></div>
+									 							<div>No. Of Pages<span class="value">650</span></div>
+									 						</div>
+									 					</div>
+							 						</div>
+							 						<div class="col-md-4 ">
+							 							<h3>{{product.owner.user}}</h3>
+							 							<span>Rs {{product.price}}</span>
+							 						</div>
+							 					</div>
+							 				</div>
+					 					</div>
+					 				</div>
+				 				</div>
+								{% endfor %}
+				 			</div>
+			 			</div>
+			 			<div class="col-md-12 col-lg-4">
+			 				<div class="summary">
+			 					<h3>Summary</h3>
+			 					<div class="summary-item"><span class="text">Total</span><span class="price">Rs{{total}}</span></div>
+			 					<button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+				 			</div>
+			 			</div>
+		 			</div>
+		 		</div>
+	 		</div>
+		</section>
+	</main>
+
+
+{% endblock %}
