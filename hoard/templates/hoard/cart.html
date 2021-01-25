@@ -2,31 +2,9 @@
 {% block content %}
 	<main class="page">
 	 	<section class="shopping-cart dark">
-	 		<div class="container">
-		        <div class="block-heading">
-		          <h2>Shopping Cart</h2>
-		          <p>Here is your shopping cart</p>
-		        </div>
-		        <div class="form">
-	 				<div class="row">
-	 					<div class="col-md-12 col-lg-8">
-	 						<div class="items">
-								{% for product in order.products.all %}
-				 				{% include 'hoard/cart_product.html' %}
-								<hr>
-								{% endfor %}
-				 			</div>
-			 			</div>
-			 			<div class="col-md-12 col-lg-4">
-			 				<div class="summary">
-			 					<h3>Summary</h3>
-			 					<div class="summary-item"><span class="text">Total</span><span class="price">Rs. {{total}}</span></div>
-			 					<button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
-				 			</div>
-			 			</div>
-		 			</div>
-		 		</div>
-	 		</div>
+		<div id="cart-to-html">
+			{% include 'hoard/cart_product.html' %}
+		</div>
 		</section>
 	</main>
 

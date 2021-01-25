@@ -154,7 +154,8 @@
     dataType : 'json',
     success : function(res){
       $('#cart-total').html(res['form'])
-      $('#cart-product').html(res['cart'])
+      $('#cart-to-html').html(res['cart'])
+      console.log($('#cart-to-html').html(res['cart']));
     },
     error : function(rs, e){
       console.log(e);
