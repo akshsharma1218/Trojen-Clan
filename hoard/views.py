@@ -23,9 +23,10 @@ def store(request):
     customer, created = Customer.objects.get_or_create(user = request.user)
     try:
         order = Order.objects.get(customer=customer)
+        context =  {'products':products, 'cartItems': order.cart_items()}
     except ObjectDoesNotExist:
         order = None
-    context =  {'products':products, 'cartItems': order.cart_items()}
+        context =  {'products':products}
     return render(request, 'hoard/store.html', context)
 
 def cart(request):
