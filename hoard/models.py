@@ -40,7 +40,7 @@ class Order(models.Model):
     customer        = models.ForeignKey(Customer, on_delete=models.CASCADE)
     date_ordered    = models.DateTimeField(default=timezone.now)
     complete        = models.BooleanField(default=False)
-    transaction_id  = models.CharField(max_length=100, unique=True)
+    transaction_id  = models.CharField(max_length=100, unique=True, null=True)
     products        = models.ManyToManyField(Product)
 
     def __str__(self):
