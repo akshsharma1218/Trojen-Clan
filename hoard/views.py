@@ -18,6 +18,9 @@ def index(request):
     context =  {'products':products,'top':'-top', 'header':'header-transparent'}
     return render(request, 'hoard/index.html', context)
 
+def checkout(request):
+    context = {}
+    return render(request, 'hoard/checkout.html', context)
 def store(request):
     products = Product.objects.all()
     customer, created = Customer.objects.get_or_create(user = request.user)
