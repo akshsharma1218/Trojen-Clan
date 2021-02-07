@@ -19,6 +19,12 @@
         </div>
       </div>
     <div class="col-lg-3 col-md-6 ml-5 mt-5">
+      {% if object.owner.user == request.user %}
+      <div class="mb-3 mt-0">
+        <a href="{% url 'product-update' object.id %}" class="btn btn-outline-danger">Update</a>
+        <a href="{% url 'product-delete' object.id %}"class="btn btn-danger">Delete</a>
+      </div>
+      {% endif %}
       <p>{{object.description}}</p>
     </div>
   </div>
