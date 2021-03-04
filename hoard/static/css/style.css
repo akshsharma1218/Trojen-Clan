@@ -1,6 +1,15 @@
+#ak-hidden{
+
+}
+#ak-cat, #ak-sub{
+  color: #999;
+}
+@media (max-width:1200px) {
+  #ak-cat, #ak-sub, .ak-btn{
+    display: none;
+  }
+}
 /* checkout */
-
-
 .product-image{
   margin: 10px 5px;
   padding: 10px 5px;

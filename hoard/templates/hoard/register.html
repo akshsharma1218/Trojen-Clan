@@ -1,40 +1,55 @@
 {% extends "hoard/main.html"%}
 {% block content %}
 <section id="portfolio-details" class="portfolio-details">
-<div class="container form">
-<form method="POST"">
-  {% csrf_token %}
-  <div class="container">
-    <h1>Register</h1>
-    <p>Please fill in this form to create an account.</p>
-    <hr>
-    <div class="col-md-6 form-group">
-      {{form.username}}
-    </div>
-    <div class="col-md-6 form-group">
-      {{form.roll}}
-    </div>
-    <div class="col-md-6 form-group">
-      {{form.email}}
-    </div>
-    <div class="col-md-6 form-group">
-      {{form.password1}}
-    </div>
-    <div class="col-md-6 form-group">
-      {{form.password2}}
-    </div>
+  <div class="container form">
+    {% if form.errors %}
+      {% for field in form %}
+        <div class="mt-3 fieldWrapper">
+            {{ field.errors }}
+        </div>
+      {% endfor %}
+        <div class="fieldWrapper">
+        {% for error in form.non_field_errors %}
+          <strong>{{ error }}</strong>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group col-md-4">
+        {{form.name}}
+      </div>
+      <div class="form-group col-md-4">
+        {{form.username}}
+      </div>
+      <div class="form-group col-md-4">
+        {{form.phone_num}}
+      </div>
+      <div class="form-group col-md-4">
+        {{form.email}}
+      </div>
+      <div class="form-group col-md-4">
+        {{form.address}}
+      </div>
+      <div class="form-group col-md-4">
+        {{form.password1}}
+      </div>
+      <div class="form-group col-md-4">
+        {{form.password2}}
+      </div>
+      <button class="btn btn-sm btn-dark" type="submit" name="button">Submit</button>
+      <small class="mt-5 ml-2">Already have account <a href="{% url 'login' %}">Login</a></small>
+    </form>
   </div>
-<div class="container">
-  <button class="btn btn-dark" type="submit">Register</button>
-  <p class="text-muted">Already have an account? <a href="{% url 'login' %}">Log in</a>.</p>
-</div>
-</form>
 </section>
-<script type="text/javascript">
-  const form_field = document.getElementsByTagName('input')
-  form_field[1].placeholder = 'Roll No'
-  form_field[2].placeholder = 'E-mail'
-  form_field[3].placeholder = 'Password'
-  form_field[4].placeholder = 'Confirm-Pass'
-</script>
+    <script type="text/javascript">
+      const form_field = document.getElementsByTagName('input')
+      form_field[1].placeholder = 'Name'
+      form_field[2].placeholder = 'Roll No.'
+      form_field[3].placeholder = 'Phone No.'
+      form_field[4].placeholder = 'Email'
+      form_field[5].placeholder = 'Address'
+      form_field[6].placeholder = 'Password'
+      form_field[7].placeholder = 'Confirm Password'
+    </script>
 {% endblock %}

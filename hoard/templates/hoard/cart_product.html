@@ -1,9 +1,9 @@
 <div class="container">
-      <div class="block-heading">
-        <h2>Shopping Cart</h2>
-        <p>Here is your shopping cart</p>
-      </div>
-      <div class="form">
+  <div class="block-heading">
+    <h2>Shopping Cart</h2>
+    <p>Here is your shopping cart</p>
+  </div>
+  <div class="form">
     <div class="row">
       <div class="col-md-12 col-lg-8">
         <div class="items">
@@ -18,7 +18,7 @@
                   <div class="row">
                     <div class="col-md-5 product-name">
                       <div class="product-name">
-                        <a href="#">Book 1</a>
+                        <a href="#">{{product.title}}</a>
                         <div class="product-info">
                           <div>{{product.description}}</div>
                         </div>
@@ -50,3 +50,27 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  var updatebtns = document.getElementsByClassName('update-cart')
+
+  for(var i = 0; i < updatebtns.length; i++){
+    updatebtns[i].addEventListener('click', function(){
+      const productID = this.dataset.product
+      const action = this.dataset.action
+      console.log(productID,action);
+  $.ajax({
+    type:'POST',
+    url : '/update_item/',
+    data : {'productID': productID,'action':action,'csrfmiddlewaretoken': csrftoken},
+    dataType : 'json',
+    success : function(res){
+      $('#cart-total').html(res['form'])
+      $('#cart-to-html').html(res['cart'])
+    },
+    error : function(rs, e){
+      console.log(e);
+        },
+      });
+    });
+  };
+</script>

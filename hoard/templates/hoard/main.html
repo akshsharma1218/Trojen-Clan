@@ -31,6 +31,17 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static '/css/style.css' %}" rel="stylesheet">
+  <script>
+  $(document).ready(function(){
+    $("#aksearch").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#list #me").filter(function() {
+        console.log($(this).text())
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
   <script type="text/javascript">
   var user = '{{request.user}}'
   function getToken(name) {
@@ -95,12 +106,12 @@
           {% endif %}
         </ul>
       </nav><!-- .nav-menu -->
-      {% if not top %}
+      {% if cust %}
       {% if user.is_authenticated %}
       <div class="cart-margin">
         <a href="{% url 'cart' %}">
           <img id="cart-icon" src="{% static 'image/cart.png' %}" alt="">
-          {% include "hoard/cart_var.html" %}
+          <p id="cart-total">{% include "hoard/cart_var.html" %}</p>
         </a>
       </div>
       {% endif %}
@@ -156,8 +167,6 @@
     dataType : 'json',
     success : function(res){
       $('#cart-total').html(res['form'])
-      $('#cart-to-html').html(res['cart'])
-      console.log($('#cart-to-html').html(res['cart']));
     },
     error : function(rs, e){
       console.log(e);
@@ -166,7 +175,24 @@
   });
 };
 </script>
-
+<script type="text/javascript">
+  const akcat = document.getElementById('ak-cat').value
+  const aksub = document.getElementById('ak-sub').value
+  if (akcat == '*' && aksub == '*') {
+    $(".ak-btn").click(function(){
+      $("#list #me").filter(function() {
+        $(this).toggle(($(this).find("p").text().toLowerCase().indexOf(akcat) > -1 || $(this).find("p").text().toLowerCase().indexOf(aksub) > -1));
+      });
+    });
+  }
+  else{
+    $(".ak-btn").click(function(){
+      $("#list #me").filter(function() {
+        $(this).toggle();
+      });
+    });
+  };
+</script>
 </body>
 
 </html>
