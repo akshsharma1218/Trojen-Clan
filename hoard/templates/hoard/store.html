@@ -7,26 +7,26 @@
       <p>Book Store</p>
       <div class="ak-filters">
       <input class="mt-3 mx-2" id="aksearch" type="text" placeholder="Search..">
-        <select class="mx-2 my-2" id="ak-cat">
-          <option value="Other" disabled selected>Select Category</option>
-          <option value="*">All</option>
+        <select onchange="aksh_select()"class="mx-2 my-2" id="ak-cat">
+          <option value="aksh" disabled selected>Select Category</option>
+          <option value="">All</option>
           <option value="Novel">Novel</option>
+          <option value="Gate">Gate</option>
           <option value="1st">1st year</option>
           <option value="2nd">2nd year</option>
           <option value="3rd">3rd year</option>
           <option value="4th">4th year</option>
           <option value="5th">5th year</option>
         </select>
-        <select class="mx-2 my-2" id="ak-sub">
-          <option value="Other" disabled selected>Select Subject</option>
-          <option value="*">All</option>
+        <select onchange="aksh_select()"class="mx-2 my-2" id="ak-sub">
+          <option value="aksh" disabled selected>Select Subject</option>
+          <option value="">All</option>
           <option value="Physics">Physics</option>
           <option value="Math">Math</option>
           <option value="Chemistry">Chemistry</option>
           <option value="C">C Programming</option>
           <option value="Engineering">Engineering</option>
         </select>
-        <button type="button" class="ak-btn btn btn-info">Filter</button>
       </div>
     </div>
     <div id="list" class="row">

@@ -176,22 +176,38 @@
 };
 </script>
 <script type="text/javascript">
-  const akcat = document.getElementById('ak-cat').value
-  const aksub = document.getElementById('ak-sub').value
-  if (akcat == '*' && aksub == '*') {
-    $(".ak-btn").click(function(){
-      $("#list #me").filter(function() {
-        $(this).toggle(($(this).find("p").text().toLowerCase().indexOf(akcat) > -1 || $(this).find("p").text().toLowerCase().indexOf(aksub) > -1));
+    function aksh_select(){
+      var akcat = document.getElementById('ak-cat').value.toLowerCase()
+      var aksub = document.getElementById('ak-sub').value.toLowerCase()
+  if (akcat == '' && aksub == '') {
+      $("#list #me").filter(function(){
+      $(this).css("display","");
       });
-    });
+      console.log('all');
+  }
+  else if(akcat == 'aksh' || aksub == 'aksh'){
+    if(akcat != 'aksh'){
+          console.log(akcat);
+          $("#list #me").filter(function() {
+            $(this).toggle($(this).find("p").text().toLowerCase().indexOf(akcat) > -1 );
+          });
+      }
+      if(aksub != 'aksh'){
+          console.log(aksub);
+          $("#list #me").filter(function() {
+            $(this).toggle($(this).find("p").text().toLowerCase().indexOf(aksub) > -1 );
+          });
+      }
+      console.log('aksh');
   }
   else{
-    $(".ak-btn").click(function(){
       $("#list #me").filter(function() {
-        $(this).toggle();
+        $(this).toggle(($(this).find("p").text().toLowerCase().indexOf(akcat) > -1 && $(this).find("p").text().toLowerCase().indexOf(aksub) > -1));
+        console.log($(this).find("p").text().toLowerCase())
       });
-    });
+      console.log('not all');
   };
+}
 </script>
 </body>
 

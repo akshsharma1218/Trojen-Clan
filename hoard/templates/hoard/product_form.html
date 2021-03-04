@@ -11,9 +11,13 @@
     <div class="container form-group">
       {{form.title}}
     </div>
-    <div class="container form-group">
-      {{form.type}}
-    </div>
+    <div class="container">
+      <div class="row form-group">
+        <div class="col-md-2">{{form.type}}</div>
+        <div class="col-md-2">{{form.category}}</div>
+        <div class="col-md-2">{{form.sub}}</div>
+      </div>
+  </div>
     <div class="container form-group">
       {{form.price}}
     </div>

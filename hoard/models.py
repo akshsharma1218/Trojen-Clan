@@ -24,13 +24,14 @@ class Product(models.Model):
             ('Sell or Rent','Sell or Rent'),
     ]
     Category = [
+            ('Gate','Gate'),
             ('Novel','Novel'),
             ('1st year','1st year'),
             ('2nd year','2nd year'),
             ('3rd year','3rd year'),
             ('4th year','4th year'),
             ('5th year','5th year'),
-            ('Other','Other'),
+            ('All','Other'),
     ]
     Subject = [
             ('Math','Math'),
@@ -38,13 +39,13 @@ class Product(models.Model):
             ('Chemistry ','Chemistry '),
             ('C ','C '),
             ('Engineering','Engineering'),
-            ('Other','Other'),
+            ('All','Other'),
     ]
     owner        =  models.ForeignKey(User, on_delete=models.CASCADE)
     title        =  models.CharField(max_length = 25)
     type         =  models.CharField(max_length = 12, choices = TYPE, default = 'Sell')
-    category     =  models.CharField(max_length = 12, choices = Category, default = 'Other')
-    sub          =  models.CharField(max_length = 12, choices = Subject, default = 'Other')
+    category     =  models.CharField(max_length = 12, choices = Category, default = 'Gate')
+    sub          =  models.CharField(max_length = 12, choices = Subject, default = 'Math')
     price        =  models.IntegerField()
     description  =  models.TextField(default="No Description Given")
     image        =  models.ImageField(default='default.jpeg', upload_to='product')
