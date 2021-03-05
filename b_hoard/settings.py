@@ -123,3 +123,6 @@ EMAIL_HOST_PASSWORD = "seiaobihmohcatru"
 
 LOGIN_REDIRECT_URL = 'store'
 LOGIN_URL = 'login'
+
+
+TIME_ZONE = 'Asia/Kolkata'

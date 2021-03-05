@@ -13,6 +13,9 @@ from django.views.generic import (
     CreateView,
     DetailView,
 )
+from django.core.mail import send_mail
+from django.utils import timezone
+
 
 def index(request):
     products = Product.objects.filter(is_available=True).order_by('-id')[:4]
@@ -20,15 +23,34 @@ def index(request):
     return render(request, 'hoard/index.html', context)
 
 def checkout(request):
-    try:
+    if request.method == 'POST':
+        user = request.user
+        email = user.email
+        send_mail(
+            'Order Recieved',
+            'Your order has been recieved.',
+            'cnt2k20@gmail.com',
+            [email],
+            fail_silently=False,
+        )
         order = Order.objects.get(customer=request.user,complete=False)
-        for product in order.products.all():
-            if product.is_available == 'False':
-                order.products.remove(product)
-        context =  {'cust':'cust','cartItems': order.cart_items()}
-    except ObjectDoesNotExist:
-        order = None
-        context =  {'cust':'cust','cartItems':0}
+        print(order)
+        order.date_ordered = timezone.now()
+        print(order.date_ordered)
+        order.complete = True
+        print(order.complete)
+        order.save()
+        return redirect('home')
+    else:
+        try:
+            order = Order.objects.get(customer=request.user,complete=False)
+            for product in order.products.all():
+                if product.is_available == 'False':
+                    order.products.remove(product)
+            context =  {'cust':'cust','cartItems': order.cart_items()}
+        except ObjectDoesNotExist:
+            order = None
+            context =  {'cust':'cust','cartItems':0}
     return render(request, 'hoard/checkout.html', context)
 
 def store(request):

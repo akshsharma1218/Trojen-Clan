@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from django.core.validators import RegexValidator
-from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -60,7 +59,8 @@ class Product(models.Model):
 
 class Order(models.Model):
     customer        = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_ordered    = models.DateTimeField(default=timezone.now)
+    date_ordered    = models.DateTimeField(null=True,blank=True)
+    has_done        = models.BooleanField(default=False)
     complete        = models.BooleanField(default=False)
     amount_paid     = models.BooleanField(default=False)
     transaction_id  = models.CharField(max_length=100, unique=True, null=True)

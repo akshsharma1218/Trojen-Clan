@@ -87,5 +87,11 @@ admin.site.register(User, UserAdmin)
 # unregister the Group model from admin.
 admin.site.unregister(Group)
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('customer','has_done','amount_paid','transaction_id','date_ordered',)
+    search_fields = ('customer__username','has_done','amount_paid','transaction_id',)
+    ordering = ('-date_ordered',)
+
+
+admin.site.register(Order, OrderAdmin)
 admin.site.register(Product)
-admin.site.register(Order)

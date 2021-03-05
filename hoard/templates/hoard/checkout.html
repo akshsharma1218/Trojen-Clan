@@ -1,9 +1,21 @@
 {% extends 'hoard/main.html'%}
 {% block content %}
 
+<form method="POST"">
+  {% csrf_token %}
+  <div class="container">
+    <h1>Check Out</h1>
+    <p>Proceed to buy</p>
+    <hr>
+    <div class="col-md-6 form-group">
 
-<h1>Checkout</h1>
+    </div>
+    <div class="col-md-6 form-group">
 
+    </div>
+    <button class="btn btn-dark" type="submit">Buy</button>
+  </div>
+</form>
 
 
 
