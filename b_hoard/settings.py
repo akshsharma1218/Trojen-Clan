@@ -70,7 +70,7 @@ WSGI_APPLICATION = 'b_hoard.wsgi.application'
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
-# }
+#   }
 DATABASE_URL ="postgres://lerxlnneqrmelr:2e3c7002cfb20c0303f9322febb24855df880f72f0827cd45e57247306896940@ec2-54-145-249-177.compute-1.amazonaws.com:5432/d6l478c8ddghcv"
 DATABASES = {
     'default': {

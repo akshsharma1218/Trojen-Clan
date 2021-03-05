@@ -154,7 +154,7 @@ def updateItem(request):
     if not order.products:
         order.delete()
 
-    context={'cartItems': order.cart_items(),'order':order}
+    context={'cartItems': order.cart_items(),'order':order, 'total':order.get_total()}
     if request.is_ajax:
         cart_html= render_to_string('hoard/cart_product.html', context , request=request)
         html= render_to_string('hoard/cart_var.html', context , request=request)
