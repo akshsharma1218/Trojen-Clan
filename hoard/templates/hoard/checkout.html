@@ -1,27 +1,40 @@
 {% extends 'hoard/main.html'%}
 {% block content %}
 
-<form method="POST"">
-  {% csrf_token %}
-  <div class="container">
-    <h1>Check Out</h1>
-    <p>Proceed to buy</p>
-    <hr>
-    <div class="col-md-6 form-group">
 
+<div class="container">
+  <h1>Check Out</h1>
+  <p>Proceed to buy</p>
+  <hr>
+  <div class="row">
+    <div class="col-md-12 col-lg-8 form-group">
+      <div class="col-md-4">
+        <h3>Customer Details</h3>
+        <div class="list-group">
+          <p class="list-group-items">Roll No : {{user.username}}</p>
+          <p class="list-group-items">Name : {{user.name}}</p>
+          <p class="list-group-items">E-mail   : {{user.email}}</p>
+          <p class="list-group-items">Phone   : {{user.phone_num}}</p>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 form-group">
-
+    <div class="col-md-12 col-lg-4">
+      <form method="POST"">
+          {% csrf_token %}
+        <div class="summary">
+          <h3>Summary</h3>
+          <div class="summary-item"><span class="text">Total</span><span class="price">Rs. {{total}}</span></div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Buy Now</button>
+        </div>
+      </form>
     </div>
-    <button class="btn btn-dark" type="submit">Buy</button>
   </div>
-</form>
-
+</div>
 
 
 <script type="text/javascript">
   $(document).ready(function(){
-  $("#footer").css("marginTop","15%");
+  $("#footer").css("marginTop","20%");
 });
 </script>
 {% endblock%}

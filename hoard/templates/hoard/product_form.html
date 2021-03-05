@@ -2,6 +2,18 @@
 {% block content %}
 <section id="portfolio-details" class="portfolio-details">
 <div class="container form">
+  {% if form.errors %}
+    {% for field in form %}
+      <div class="mt-3 fieldWrapper">
+          {{ field.errors }}
+      </div>
+    {% endfor %}
+      <div class="fieldWrapper">
+      {% for error in form.non_field_errors %}
+        <strong>{{ error }}</strong>
+      {% endfor %}
+    </div>
+  {% endif %}
 <form enctype="multipart/form-data" method="POST"">
   {% csrf_token %}
   <div class="container">

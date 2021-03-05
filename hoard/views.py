@@ -40,17 +40,19 @@ def checkout(request):
         order.complete = True
         print(order.complete)
         order.save()
+        messages.success(request,f'Order completed')
         return redirect('home')
     else:
+        user = request.user
         try:
             order = Order.objects.get(customer=request.user,complete=False)
             for product in order.products.all():
                 if product.is_available == 'False':
                     order.products.remove(product)
-            context =  {'cust':'cust','cartItems': order.cart_items()}
+            context =  {'cust':'cust','total':order.get_total(),'user':user,'cartItems': order.cart_items()}
         except ObjectDoesNotExist:
             order = None
-            context =  {'cust':'cust','cartItems':0}
+            context =  {'cust':'cust','user':user,'cartItems':0}
     return render(request, 'hoard/checkout.html', context)
 
 def store(request):
@@ -68,7 +70,7 @@ def store(request):
 
 def cart(request):
     if  request.user.is_authenticated:
-        order, created = Order.objects.get_or_create(customer=request.user,complete=False)
+        order = Order.objects.get(customer=request.user,complete=False)
         for product in order.products.all():
             if product.is_available == False:
                 order.products.remove(product)
@@ -95,10 +97,10 @@ class ProductDetailView(DetailView):
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         try:
-            order = Order.objects.get(customer=self.request.user, complete=False)
+            order, created = Order.objects.get_or_create(customer=self.request.user, complete=False)
             context.update({'cust':'cust','cartItems':order.cart_items()})
         except ObjectDoesNotExist:
-            context.update({'cust':'cust','cartItems':'x'})
+            context.update({'cust':'cust','cartItems':'0'})
         return context
 
 class ProductCreateView(LoginRequiredMixin, CreateView):

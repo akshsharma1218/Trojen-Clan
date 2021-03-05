@@ -28,6 +28,13 @@
    padding: 20px;
    margin: 20px 35px;
  }
+ @media (max-width:786px) {
+   .form{
+     padding: 10px;
+     margin: 10px;
+   }
+
+ }
 
  #cart-icon{
  	width:25px;
@@ -520,6 +527,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   overflow: hidden;
   position: relative;
+  top:-70px;
   background: linear-gradient(0deg, #2a2c39 0%, #33364a 100%);
   padding: 0;
 }
@@ -1376,6 +1384,7 @@ section {
 .team .member .member-img {
   position: relative;
   overflow: hidden;
+  height: 250px;
 }
 
 .team .member .social {
