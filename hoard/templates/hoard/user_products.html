@@ -1,0 +1,36 @@
+{% extends 'hoard/main.html'%}
+{% block content %}
+<section class="pricing">
+  <div class="container">
+    <div class="section-title" data-aos="zoom-out">
+      <h2>Books</h2>
+      <p>{{name}} Products</p>
+    </div>
+    <div id="list" class="row">
+      {% for product in products %}
+      <div id="me" class="col-lg-3 col-md-6 mt-4">
+        <div class="box featured" data-aos="zoom-in">
+          <h3>{{product.title}}</h3>
+          <div id = "ak-hidden" style="display:none">
+            {{product.description}}
+            <p id="book-cat">{{product.category}}</p>
+            <p id="book-sub">{{product.sub}}</p>
+          </div>
+          <h4><sup>Rs.</sup>{{product.price}}<span> / month</span></h4>
+          <img class="product-image" src="{{ product.image.url }}" height="170px" alt="">
+          <div class="btn-wrap">
+            <a href="{% url 'product-detail' product.id %}" class="btn-buy">View</a>
+            <button data-product={{product.id}} data-action="add" class="btn-buy update-cart">Add</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#footer").css("marginTop","20%");
+});
+</script>
+{% endblock %}

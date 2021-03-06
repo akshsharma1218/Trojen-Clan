@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .admin import UserCreationForm
 from .models import *
@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.views.generic import (
+    ListView,
     UpdateView,
     DeleteView,
     CreateView,
@@ -15,13 +16,14 @@ from django.views.generic import (
 )
 from django.core.mail import send_mail
 from django.utils import timezone
-
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     products = Product.objects.filter(is_available=True).order_by('-id')[:4]
     context =  {'products':products,'top':'-top','header':'header-transparent'}
     return render(request, 'hoard/index.html', context)
 
+@login_required
 def checkout(request):
     if request.method == 'POST':
         user = request.user
@@ -34,11 +36,9 @@ def checkout(request):
             fail_silently=False,
         )
         order = Order.objects.get(customer=request.user,complete=False)
-        print(order)
         order.date_ordered = timezone.now()
-        print(order.date_ordered)
         order.complete = True
-        print(order.complete)
+        order.transaction_id = str(order.customer) + str(order.date_ordered) +str(order.id)
         order.save()
         messages.success(request,f'Order completed')
         return redirect('home')
@@ -55,6 +55,7 @@ def checkout(request):
             context =  {'cust':'cust','user':user,'cartItems':0}
     return render(request, 'hoard/checkout.html', context)
 
+@login_required
 def store(request):
     products = Product.objects.filter(~Q(owner = request.user),is_available=True)
     try:
@@ -70,7 +71,7 @@ def store(request):
 
 def cart(request):
     if  request.user.is_authenticated:
-        order = Order.objects.get(customer=request.user,complete=False)
+        order, created = Order.objects.get_or_create(customer=request.user, complete=False)
         for product in order.products.all():
             if product.is_available == False:
                 order.products.remove(product)
@@ -91,16 +92,36 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'hoard/register.html', {'form':form})
 
-class ProductDetailView(DetailView):
+# @login_required
+# def Profile(request):
+
+
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        try:
+        if self.request.user.is_authenticated:
             order, created = Order.objects.get_or_create(customer=self.request.user, complete=False)
             context.update({'cust':'cust','cartItems':order.cart_items()})
-        except ObjectDoesNotExist:
-            context.update({'cust':'cust','cartItems':'0'})
+        else:
+            context.update({'cust':'cust','cartItems':0})
+        return context
+
+class UserProductListView(ListView):
+    model = Product
+    template_name = 'hoard/user_products.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Product.objects.filter(owner=user).order_by('-id')
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        context.update({'name':user.name})
+        print(user.name)
         return context
 
 class ProductCreateView(LoginRequiredMixin, CreateView):

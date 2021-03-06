@@ -2,7 +2,7 @@
 {% block content %}
 <section class="pricing">
   <div class="container">
-    <div class="section-title" data-aos="zoom-out">
+    <div class="section-title">
       <h2>Books</h2>
       <p>Book Store</p>
       <div class="ak-filters">
@@ -32,7 +32,7 @@
     <div id="list" class="row">
       {% for book in products %}
       <div id="me" class="col-lg-3 col-md-6 mt-4">
-        <div class="box featured" data-aos="zoom-in">
+        <div class="box featured">
           <h3>{{book.title}}</h3>
           <div id = "ak-hidden" style="display:none">
             {{book.description}}
@@ -41,8 +41,10 @@
           </div>
           <h4><sup>Rs.</sup>{{book.price}}<span> / month</span></h4>
           <img class="product-image" src="{{ book.image.url }}" height="170px" alt="">
+          <p><span style="color:#71400e;">Owner : </span><a style="color:black;" href="{% url 'user-products' book.owner.username %}">{{book.owner.name}}</a></p>
           <div class="btn-wrap">
             <a href="{% url 'product-detail' book.id %}" class="btn-buy">View</a>
+            <button data-product={{book.id}} data-action="add" class="btn-buy update-cart">Add</button>
           </div>
         </div>
       </div>

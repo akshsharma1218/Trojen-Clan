@@ -100,9 +100,9 @@
         bottom = top + $(this).outerHeight();
 
       if (cur_pos >= top && cur_pos <= bottom) {
-        // if (cur_pos <= bottom) {
-        //   main_nav.find('li').removeClass('active');
-        // }
+        if (cur_pos <= bottom) {
+          main_nav.find('li').removeClass('active');
+        }
         main_nav.find('a[href="#' + $(this).attr('id') + '"]').parent('li').addClass('active');
       }
       // if (cur_pos < 300) {
