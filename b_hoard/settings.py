@@ -65,25 +65,25 @@ WSGI_APPLICATION = 'b_hoard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-  }
-# DATABASE_URL ="postgres://lerxlnneqrmelr:2e3c7002cfb20c0303f9322febb24855df880f72f0827cd45e57247306896940@ec2-54-145-249-177.compute-1.amazonaws.com:5432/d6l478c8ddghcv"
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'd6l478c8ddghcv',
-#         'USER' :'lerxlnneqrmelr',
-#         'PASSWORD' : '2e3c7002cfb20c0303f9322febb24855df880f72f0827cd45e57247306896940',
-#         'HOST' : 'ec2-54-145-249-177.compute-1.amazonaws.com',
-#         'PORT' : '5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
-# }
-# import dj_database_url
-# DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
+#   }
+DATABASE_URL ="postgres://lerxlnneqrmelr:2e3c7002cfb20c0303f9322febb24855df880f72f0827cd45e57247306896940@ec2-54-145-249-177.compute-1.amazonaws.com:5432/d6l478c8ddghcv"
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd6l478c8ddghcv',
+        'USER' :'lerxlnneqrmelr',
+        'PASSWORD' : '2e3c7002cfb20c0303f9322febb24855df880f72f0827cd45e57247306896940',
+        'HOST' : 'ec2-54-145-249-177.compute-1.amazonaws.com',
+        'PORT' : '5432',
+    }
+}
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 
 
 
