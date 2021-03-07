@@ -11,7 +11,7 @@
           <p><span style="color:#71400e;">Owner : <a style="color:black;" href="{% url 'user-products' object.owner.username %}">{{object.owner.name}}</a></p>
           <div class="btn-wrap">
             {% if object.owner != request.user %}
-            <button data-product={{object.id}} data-action="add" class="btn-buy update-cart">Add To Cart</button>
+            <button data-product={{object.id}} data-action="add" class="btn-buy update-cart"><a href = "{% url 'store' %}" style="color:white;">Add To Cart</a></button>
             {% endif %}
           </div>
         </div>
