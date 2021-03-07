@@ -15,7 +15,7 @@ SECRET_KEY = 'gkp)q2kc5x(jo0qjj123t8lev^w4cp1vcu**id5$!x7#=fv1-h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['bookhoard.herokuapp.com']
 
 
 # Application definition
@@ -141,6 +141,6 @@ LOGIN_URL = 'login'
 
 TIME_ZONE = 'Asia/Kolkata'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
