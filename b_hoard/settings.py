@@ -15,7 +15,7 @@ SECRET_KEY = 'gkp)q2kc5x(jo0qjj123t8lev^w4cp1vcu**id5$!x7#=fv1-h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bookhoard.herokuapp.com']
+ALLOWED_HOSTS = ['bookhoard.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hoard.apps.HoardConfig',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,7 @@ WSGI_APPLICATION = 'b_hoard.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+#
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -136,6 +137,13 @@ EMAIL_HOST_PASSWORD = "seiaobihmohcatru"
 LOGIN_REDIRECT_URL = 'store'
 LOGIN_URL = 'login'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'djizvhr79',
+    'API_KEY': '663417468428828',
+    'API_SECRET': 'CMenDWeK724l5T1Kp6U5H0jTrpI',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

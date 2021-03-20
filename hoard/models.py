@@ -47,7 +47,7 @@ class Product(models.Model):
     sub          =  models.CharField(max_length = 12, choices = Subject, default = 'Math')
     price        =  models.IntegerField()
     description  =  models.TextField(default="No Description Given")
-    image        =  models.ImageField(default='default.jpeg', upload_to='product')
+    image        =  models.ImageField(default='default_ft8ewu.jpg', upload_to='product')
     is_available =  models.BooleanField(default=True)
 
     def __str__(self):
