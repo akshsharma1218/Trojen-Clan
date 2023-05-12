@@ -31,7 +31,7 @@ def checkout(request):
         send_mail(
             'Order Recieved',
             'Your order has been recieved.',
-            'cnt2k20@gmail.com',
+            '194034@nith.ac.in',
             [email],
             fail_silently=False,
         )
@@ -87,6 +87,14 @@ def register(request):
             form.save()
             uservalue = form.cleaned_data.get('username')
             messages.success(request,f'Account Created for {uservalue}')
+            email = form.cleaned_data.get('email')
+            send_mail(
+                'Account registered',
+                'Your account has been registered on bookhoard '+ uservalue,
+                'bookhoardnith@gmail.com',
+                [email],
+                fail_silently=False,
+            )
             return redirect('login')
     else:
         form = UserCreationForm()
@@ -157,6 +165,12 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+from django.shortcuts import HttpResponse
+
+
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
 def updateItem(request):
     productID = request.POST.get('productID')
     action = request.POST.get('action')
@@ -176,7 +190,7 @@ def updateItem(request):
         order.delete()
 
     context={'cartItems': order.cart_items(),'order':order, 'total':order.get_total()}
-    if request.is_ajax:
+    if is_ajax(request=request):
         cart_html= render_to_string('hoard/cart_product.html', context , request=request)
         html= render_to_string('hoard/cart_var.html', context , request=request)
         context = { 'form': html, 'cart':cart_html }

@@ -9,14 +9,14 @@
       <div class="carousel-item active">
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Book-Hoard</span></h2>
-          <p class="animate__animated fanimate__adeInUp">In this chnaging world we want to help students. They can sell,buy,rent and can get advice on buying books all at a single place.</p>
+          <p class="animate__animated fanimate__adeInUp">In this changing world we want to help students. They can sell,buy,rent and can get advice on buying books all at a single place.</p>
           <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
         </div>
       </div>
       <div class="carousel-item">
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">Buying Books</h2>
-          <p class="animate__animated animate__fadeInUp">You can buy books here from others according to the condition,publishing year and the status of book,no need to spend extra bucks on buying books which you will read for one or two years.</p>
+          <p class="animate__animated animate__fadeInUp">You can buy any type of books such as course books or other competitive books from others at a relatively lower price..</p>
           <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
         </div>
       </div>
@@ -25,7 +25,7 @@
       <div class="carousel-item">
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">Rent Books</h2>
-          <p class="animate__animated animate__fadeInUp">You can rent books from others if you want that book for a certain period and then return it after using it. Renting novels can be the most significient</p>
+          <p class="animate__animated animate__fadeInUp">You can rent books from others if you want the book for a certain period and then return after using it. Renting novels can be the most significant.</p>
           <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
         </div>
       </div>
@@ -73,7 +73,7 @@
         <div class="col-lg-3 col-md-6 mt-4">
           <div class="box featured" data-aos="zoom-in">
             <h3>{{book.title}}</h3>
-            <h4><sup>Rs.</sup>{{book.price}}<span> / month</span></h4>
+            <h4><sup>Rs.</sup>{{book.price}}</h4>
             <img class="product-image" src="{{ book.image.url }}" height="170px" alt="">
             <div class="btn-wrap">
               <a href="{% url 'product-detail' book.id %}" class="btn-buy">View</a>
@@ -99,7 +99,7 @@
         <div class="row content" data-aos="fade-up">
           <div class="col-lg-6">
             <p>
-              This site is specially made for students.This can play a major role in their lifes as many spend thousand bucks on purchasing new books and then they are of no use after a while.
+              Our project Book Hoard is a web portal based project that has been designed keeping the needs  of our students in mind. 
             </p>
             <ul>
               <li><i class="ri-check-double-line"></i>Buy books </li>
@@ -110,7 +110,9 @@
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p>
-              In the initial phase it is NITH specific.Students across the institute can see the books available with others.They can aslo sell the books they have read or find less significiant.It will also include a consult panel which will instruct students before buying a new book.
+              Our project aims to create an environment where the students can communicate and share resources.Our project also gives a common platform where the students can buy, sell or rent second hand/course subject books with much ease by negotiating prices.
+
+
             </p>
             <a href="#" class="btn-learn-more">Learn More</a>
           </div>
@@ -134,7 +136,7 @@
         <div class="row" data-aos="zoom-out">
           <div class="col-lg-9 text-center text-lg-left">
             <h3>Call To Action</h3>
-            <p>Contact us if you face any problem regarding your buisness</p>
+            <p>Contact us if you face any problem regarding your business</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
             <a class="cta-btn align-middle" href="#">Call To Action</a>
@@ -159,8 +161,8 @@
               An amazing portal which offers a conducive and flexible environment for buying,selling and renting books at an affordable price.
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="{% static '/image/test1.jpg' %}" class="testimonial-img" alt="">
-            <h3>Aditya Rana</h3>
+            <img src="{% static '/image/poim.png' %}" class="testimonial-img" alt="">
+            <h3>Poorvansh Mahajan</h3>
             <h4>Team Member</h4>
           </div>
 
@@ -170,8 +172,8 @@
               An amazing portal which offers a conducive and flexible environment for buying,selling and renting books at an affordable price.
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="{% static '/image/test2.jpg' %}" class="testimonial-img" alt="">
-            <h3>Aksh Sharma</h3>
+            <img src="{% static '/image/atim.jpg' %}" class="testimonial-img" alt="">
+            <h3>Atul Chandel</h3>
             <h4>Team Member</h4>
           </div>
 
@@ -192,8 +194,8 @@
               An amazing portal which offers a conducive and flexible environment for buying,selling and renting books at an affordable price
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="{% static '/image/test4.jpg' %}" class="testimonial-img" alt="">
-            <h3>Vanshika Thakur</h3>
+            <img src="{% static '/image/lkim.png' %}" class="testimonial-img" alt="">
+            <h3>Lakshay Sharma</h3>
             <h4>Team member</h4>
           </div>
 
@@ -218,7 +220,7 @@
             <a data-toggle="collapse" class="" href="#faq1">How can we contact the seller,renter? <i class="icofont-simple-up"></i></a>
             <div id="faq1" class="collapse show" data-parent=".faq-list">
               <p>
-                You can contact the seller through his/her email id which is displayed in this portal.
+                You can contact the seller through his/her email id or phone number which is displayed in the  portal.
               </p>
             </div>
           </li>
@@ -284,29 +286,10 @@
         </div>
 
         <div class="row">
-
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up">
+            <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
-                <img src="{% static '/image/test1.jpg' %}" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href="https://www.instagram.com/_mr.aditya_rana_/"><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Aditya Rana</h4>
-                <span>Team Member</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="member-img">
-                <img src="{% static '/image/test2.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static '/image/ashok.png' %}" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
@@ -315,7 +298,43 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Aksh Sharma</h4>
+                <h4>Dr. Ashok Kumar</h4>
+                <span>Mentor</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up">
+              <div class="member-img">
+                <img src="{% static '/image/poim.png' %}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Poorvansh Mahajan</h4>
+                <span>Team Member</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="{% static '/image/atim.jpg' %}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href="https://www.instagram.com/atulchndel/"><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Atul Chandel</h4>
                 <span>Team Member</span>
               </div>
             </div>
@@ -342,7 +361,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
-                <img src="{% static '/image/test4.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static '/image/lkim.png' %}" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
@@ -351,11 +370,28 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Vanshika Thakur</h4>
+                <h4>Lakshay Sharma</h4>
                 <span>Team Member</span>
               </div>
             </div>
           </div>
+          <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="300">
+              <div class="member-img">
+                <img src="{% static '/image/ashok.png' %}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Ashok Kumar</h4>
+                <span>Mentor</span>
+              </div>
+            </div>
+          </div> -->
 
         </div>
 
@@ -381,17 +417,17 @@
               </div>
 
               <div class="email">
-                <a href="mailto:akshsharma1218@gmail.com">
+                <a href="mailto:bookhoardnith@gmail.com">
                   <i class="icofont-envelope"></i>
                   <h4>Email:</h4>
-                  <p>akshsharam1218@gmail.com</p>
+                  <p>bookhoardnith@gmail.com</p>
                 </a>
               </div>
 
               <div class="phone">
                 <i class="icofont-phone"></i>
                 <h4>Call:</h4>
-                <p>+91 7018321941</p>
+                <p>+91 8580830192</p>
               </div>
 
             </div>
