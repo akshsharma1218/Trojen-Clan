@@ -29,13 +29,27 @@ def checkout(request):
         user = request.user
         email = user.email
         send_mail(
-            'Order Recieved',
-            'Your order has been recieved.',
-            '194034@nith.ac.in',
+            'Order Succesful',
+            'Your order has been sent.',
+            'bookhoardnith@gmail.com',
             [email],
             fail_silently=False,
         )
         order = Order.objects.get(customer=request.user,complete=False)
+        owners = list(order.products.all().values_list('owner__email'))
+        email_list = [x[0] for x in owners]
+        send_mail(
+            'Order Received',
+            f"""An order has been received from
+             Name : {user.email}
+             Roll no. : {user.username}
+             Phone no. : {user.phone_num},
+             Email Id. : {user.email},
+             """,
+            'bookhoardnith@gmail.com',
+            email_list,
+            fail_silently=False,
+        )
         order.date_ordered = timezone.now()
         order.complete = True
         order.transaction_id = str(order.customer) + str(order.date_ordered) +str(order.id)
@@ -49,7 +63,11 @@ def checkout(request):
             for product in order.products.all():
                 if product.is_available == 'False':
                     order.products.remove(product)
-            context =  {'cust':'cust','total':order.get_total(),'user':user,'cartItems': order.cart_items()}
+            
+            own = order.products.all().values_list('owner')
+            owners = [User.objects.get(id=x[0]) for x in own]
+            print(owners)
+            context =  {'cust':'cust','total':order.get_total(),'user':user,'cartItems': order.cart_items(),'owners':owners}
         except ObjectDoesNotExist:
             order = None
             context =  {'cust':'cust','user':user,'cartItems':0}
@@ -68,6 +86,9 @@ def store(request):
         order = None
         context =  {'products':products,'cust':'cust','cartItems':0}
     return render(request, 'hoard/store.html', context)
+
+def explore(request):
+    return redirect('https://nith.ac.in/research-publications')
 
 def cart(request):
     if  request.user.is_authenticated:
@@ -89,8 +110,8 @@ def register(request):
             messages.success(request,f'Account Created for {uservalue}')
             email = form.cleaned_data.get('email')
             send_mail(
-                'Account registered',
-                'Your account has been registered on bookhoard '+ uservalue,
+                'Account registered on bookhoardnith',
+                'Your account has been registered on bookhoard.\nFor any queries contact bookhoardnith@gmail.com',
                 'bookhoardnith@gmail.com',
                 [email],
                 fail_silently=False,

@@ -8,7 +8,7 @@
   <hr>
   <div class="row">
     <div class="col-md-12 col-lg-8 form-group">
-      <div class="col-md-4">
+      <div class="col-md-6 col-lg-8">
         <h3>Customer Details</h3>
         <div class="list-group">
           <p class="list-group-items">Roll No : {{user.username}}</p>
@@ -16,10 +16,20 @@
           <p class="list-group-items">E-mail   : {{user.email}}</p>
           <p class="list-group-items">Phone   : {{user.phone_num}}</p>
         </div>
+        <h3>Owner Details</h3>
+        {% for owner in owners %}
+        <h5>{{forloop.counter}}</h5>
+        <div class="list-group">
+          <p class="list-group-items">Roll No : {{owner.username}}</p>
+          <p class="list-group-items">Name : {{owner.name}}</p>
+          <p class="list-group-items">E-mail   : {{owner.email}}</p>
+          <p class="list-group-items">Phone   : {{owner.phone_num}}</p>
+        </div>
+        {% endfor %}
       </div>
     </div>
-    <div class="col-md-12 col-lg-4">
-      <form method="POST"">
+    <div class="col-md-6 col-lg-4">
+      <form method="POST">
           {% csrf_token %}
         <div class="summary">
           <h3>Summary</h3>

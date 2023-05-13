@@ -10,6 +10,7 @@ urlpatterns = [
     path('checkout/', views.checkout, name = 'checkout'),
     path('update_item/', views.updateItem, name='update_item'),
     path('store/', views.store, name = 'store'),
+    path('explore/', views.explore, name = 'explore'),
     path('register/', views.register, name='register'),
     path('user/<str:username>', views.UserProductListView.as_view(), name='user-products'),
     path('product/new/', views.ProductCreateView.as_view(), name='product-create'),
